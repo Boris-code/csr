@@ -1,0 +1,32 @@
+
+curl -XPUT "http://localhost:9200/tab_news_csr_hot" -d'
+{
+    "settings":{
+        "number_of_shards":3,
+        "number_of_replicas":1
+    },
+    "mappings":{
+        "tab_news_csr_hot":{
+            "properties":{
+                "hot_id":{
+                    "type":"long"
+                },
+                "hot":{
+                    "type":"long"
+                },
+                "start_time":{
+                    "type" :   "date",
+                    "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+                },
+                "csr_res_ids":{
+                    "type":"string",
+                    "analyzer":"ik_max_word"
+                },
+                "csr_content":{
+                    "type":"string",
+                    "analyzer":"ik_max_word"
+                }
+            }
+        }
+    }
+}'
